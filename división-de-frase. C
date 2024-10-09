@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char *frase, palabra[10][20];
+    char salida[10][20];
+    char *pch=NULL;
+
+    int n=0, i, j;
+
+    
+    frase = (char*)malloc(sizeof(char)*100);
+
+    printf("Ingrese una frase:\n");
+    fgets(frase, 100, stdin);
+
+    pch = strtok(frase, " \n,.;");
+    i = 0;
+    while (pch != NULL) {
+        strcpy(palabra[i], pch);
+        pch = strtok(NULL, " \n,.;");
+        i++;
+    }
+
+    printf("Ingrese el número de palabras a buscar:\n");
+    scanf("%d", &n);
+    
+    for (i = 0; i < n; i++) {
+        printf("Ingrese la palabra %d: ", i+1);
+        scanf("%s", palabra[i+10]); 
+    }
+
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < 10; j++) {
+            if (strcmp(palabra[i+10], palabra[j]) == 0) {
+                strcpy(salida[i], palabra[j]);
+                break;
+            }
+        }
+    }
+
+    printf("Palabras encontradas:\n");
+    for (i = 0; i < n; i++) {
+        printf("%s\n", salida[i]);
+    }
+
+    free(frase); 
+    return 0;
+}
